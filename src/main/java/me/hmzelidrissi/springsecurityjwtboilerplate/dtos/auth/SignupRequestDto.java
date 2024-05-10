@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.hmzelidrissi.springsecurityjwtboilerplate.entities.Role;
 
 @Builder
 @Data
@@ -24,4 +25,5 @@ public class SignupRequestDto {
     @NotNull(message = "password is required")
     @Size(min = 6, message = "password should be at least 6 characters")
     private String password;
+    private Role role;
 }
