@@ -1,5 +1,6 @@
 package me.hmzelidrissi.springsecurityjwtboilerplate.controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import me.hmzelidrissi.springsecurityjwtboilerplate.dtos.auth.AuthenticationResponseDto;
@@ -17,19 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthService authService;
+  private final AuthService authService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<AuthenticationResponseDto> signup(
-            @Valid @RequestBody SignupRequestDto request
-    ) {
-        return ResponseEntity.ok(authService.signup(request));
-    }
+  @PostMapping("/signup")
+  public ResponseEntity<AuthenticationResponseDto> signup(
+      @Valid @RequestBody SignupRequestDto request, HttpServletResponse response) {
+    return ResponseEntity.ok(authService.signup(request, response));
+  }
 
-    @PostMapping("/signin")
-    public ResponseEntity<AuthenticationResponseDto> signin(
-            @Valid @RequestBody SigninRequestDto request
-    ) {
-        return ResponseEntity.ok(authService.signin(request));
-    }
+  @PostMapping("/signin")
+  public ResponseEntity<AuthenticationResponseDto> signin(
+      @Valid @RequestBody SigninRequestDto request, HttpServletResponse response) {
+    return ResponseEntity.ok(authService.signin(request, response));
+  }
+
+  @PostMapping("/signout")
+  public ResponseEntity<Void> signout(HttpServletResponse response) {
+    authService.signout(response);
+    return ResponseEntity.ok().build();
+  }
 }
