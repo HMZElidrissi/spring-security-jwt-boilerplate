@@ -1,6 +1,8 @@
 #  Secure your spring boot REST endpoints using JWT
 
-This boilerplate provides a basic template for securing a Spring REST API using Spring Security and JWT (JSON Web Tokens) using [jwtk/jjwt](https://github.com/jwtk/jjwt) library. It also includes support for roles and permissions, allowing you to easily manage access control for your API endpoints.
+This boilerplate provides a basic template for securing a Spring REST API using Spring Security OAuth2 resource server.
+
+for more information Check my article [You need to ditch your JWT authentication filter](https://hmzelidrissi.ma/blog/You-need-to-ditch-your-JWT-authentication-filter/)
 
 ## Features
 
@@ -19,8 +21,11 @@ This boilerplate provides a basic template for securing a Spring REST API using 
     * `DB_URL`: your Postgresql database URL (e.g. `jdbc:postgresql://localhost:5432/mydb`)
     * `DB_USERNAME`: your Postgresql database username
     * `DB_PASSWORD`: your Postgresql database password
-    * `JWT_SECRET_KEY`: your secret key for token generation
-5. Run the application using your preferred method (e.g. `mvn spring-boot:run`)
+5. Generate the private and public keys `app.private.key` and `app.public.key` using the following commands:
+    * `openssl genrsa -out app.private.key 2048`
+    * `openssl rsa -in app.private.key -pubout -out app.public.key`
+    * Move the generated keys to the `src/main/resources` directory
+6. Run the application using your preferred method (e.g. `mvn spring-boot:run`)
 
 ## Usage
 
